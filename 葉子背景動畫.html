@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>葉子背景動畫</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: hsl(19, 43%, 27%);
+    }
+
+    .leaf {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url('./裝飾葉.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.className = 'leaf';
+      leaf.style.left = Math.random() * window.innerWidth + 'px';
+      leaf.style.animationDuration = Math.random() * 3 + 2 + 's';
+      leaf.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(leaf);
+      leaf.addEventListener('animationend', () => {
+        leaf.remove();
+      });
+    }
+
+    setInterval(createLeaf, 1500);
+  </script>
+</body>
+
+</html>
